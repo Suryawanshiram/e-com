@@ -3,6 +3,7 @@ import { ProductsType } from "../../types/types";
 import Categories from "../atoms/Categories";
 import ProductCard from "./ProductCard";
 import Link from "next/link";
+import Filter from "../atoms/Filter";
 
 const products: ProductsType = [
   {
@@ -115,11 +116,18 @@ const products: ProductsType = [
   },
 ];
 
-const ProductList = ({ category }: { category: string }) => {
+const ProductList = ({
+  category,
+  params,
+}: {
+  category: string;
+  params: "homepage" | "products";
+}) => {
   return (
     <div className="w-full">
       <div>
         <Categories />
+        {params === "products" && <Filter />}
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-12 lg:grid-cols-4 xl:grid-cols-4">
         {products?.map((product) => (
